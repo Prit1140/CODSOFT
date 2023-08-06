@@ -99,3 +99,25 @@ elif choice == 4:
     print("The division of given two numbers is", num1 / num2)
 else:
     print("Error")
+
+# CODSOFT
+# Weather Forecast
+
+import requests
+
+api_key = '0db5bb2c94c05b68fef3292726ca53b0'
+
+user_input = input("Enter city: ")
+
+weather_data = requests.get(
+    f"https://api.openweathermap.org/data/2.5/weather?q={user_input}&units=imperial&APPID={api_key}")
+
+if weather_data.json()['cod'] == '404':
+    print("No specific city")
+else:
+    weather = weather_data.json()['weather'][0]['main']
+    temp = round(weather_data.json()['main']['temp'])
+
+    print(f"The weather in {user_input} is: {weather}")
+    print(f"The temperature in {user_input} is: {temp}ºF")
+
